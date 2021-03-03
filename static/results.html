@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<script src="dist/jquery.js"></script>
+
+<script src="dist/inflection.js"></script>
+<script src="dist/animation.js"></script>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Semantic Text Searcher | Results</title>
+<style>
+
+body{
+	height:100%;
+	margin:0;
+	}
+
+.container{
+	width:50%;
+	height:100%;
+	position:fixed;
+
+	}
+.container h1{
+	text-align:center;
+	font-family:"Comic Sans MS";
+	height:5%;
+	}
+
+.container p{
+	padding:10px;
+	}
+
+#results{
+	padding:10px;
+	list-style-type:none;
+	margin:0;
+	height:100%;
+	}
+
+.internalcontainer{
+	width:100%;
+	overflow-y:scroll;
+	text-align:left;
+	height:95%;
+	border-top:solid;
+	font-family:"Comic Sans MS";
+	
+	}
+	
+#synonyms{
+	list-style-type:none;
+	}
+	
+.semantictitle{
+	background-color:#FF0;
+	font-size:20px;
+	}
+
+.word:hover{
+	background-color:#09F;
+	cursor:pointer;
+	
+	}
+
+</style>
+
+
+
+
+</head>
+
+<body>
+	<div class="container" style="border-right:solid;">
+		<h1>Original Text</h1>
+		<div class="internalcontainer">
+			<p id="maintext">{{ maintext }}</p>
+            
+           <br />
+           <br />
+		</div>
+	</div>
+
+
+	<div class="container" style="border-left:solid; left:50%;">
+	  <h1>Search Results</h1>
+		<div class="internalcontainer" style="direction : rtl;">
+        
+        
+         
+        	<ul id="results" style="direction : ltr;">
+       			
+                {% for x in titledisplay recursive %}
+        			{% set parentloop = loop %}
+        			<li class="semantictitle">
+                    	
+                                            		
+                    	
+                        
+                        <b>{{ x }}</b>
+ 						
+                        Total No. of Occurences: {{ groupstotallist[loop.index0] }}                        
+                        
+
+                    
+                    </li>
+                    
+                    <br />
+                    <ul id="synonyms">
+                    	{% for y in semanticgroup[loop.index0] %}
+                        
+                        
+	                        <li> <a class="word" id="{{y}}">{{y}}</a> || No. of Occurences: {{ listofscores[parentloop.index0][loop.index0] }}</li>
+    						
+                        {% endfor %}
+                    </ul>
+                    <br />
+                    <br />
+                {% endfor %}
+        
+        
+             
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+           
+            </ul>
+			
+        
+        
+        
+        </div>
+	</div>
+
+
+
+<a id="results"></a>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
